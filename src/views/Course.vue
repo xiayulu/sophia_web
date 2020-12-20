@@ -1,0 +1,64 @@
+<template>
+  <v-card>
+    <v-toolbar color="cyan" dark flat>
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Your Dashboard</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+
+      <v-btn icon>
+        <v-icon>mdi-dots-vertical</v-icon>
+      </v-btn>
+
+      <template v-slot:extension>
+        <v-tabs v-model="tab" align-with-title>
+          <v-tabs-slider color="yellow"></v-tabs-slider>
+
+          <v-tab>简介</v-tab>
+          <v-tab>目录</v-tab>
+          <v-tab>讨论</v-tab>
+          <v-tab>练习</v-tab>
+          <v-tab>管理</v-tab>
+        </v-tabs>
+      </template>
+    </v-toolbar>
+
+    <v-tabs-items v-model="tab">
+      <v-tab-item>
+        <Introduction />
+      </v-tab-item>
+      <v-tab-item>
+        <ChapterList />
+      </v-tab-item>
+      <v-tab-item>
+        <Discuss />
+      </v-tab-item>
+      <v-tab-item>
+        <Exercise />
+      </v-tab-item>
+    </v-tabs-items>
+  </v-card>
+</template>
+
+<script>
+import ChapterList from "@/views/ChapterList.vue";
+import Introduction from "@/views/Introduction.vue";
+import Discuss from "@/views/Discuss.vue";
+import Exercise from "@/views/Exercise.vue";
+export default {
+  components: { ChapterList, Introduction, Discuss, Exercise },
+  data() {
+    return {
+      tab: null, // tab control
+      items: ["web", "shopping", "videos", "images", "news"],
+      text:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    };
+  },
+};
+</script>
