@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -45,9 +41,15 @@
 
 <script>
 export default {
-  name: 'App',
+  name: "App",
   data: () => ({
     //
   }),
 };
 </script>
+
+<style lang="css">
+a {
+  text-decoration: none;
+}
+</style>

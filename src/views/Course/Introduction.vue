@@ -6,6 +6,9 @@
         
         </v-sheet>
       </v-col>
+      <v-col cols="2" >
+      <v-sheet min-height="70vh" color="green"></v-sheet>  
+      </v-col>
     </v-row>
   </v-container>
 </template>
