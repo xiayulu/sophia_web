@@ -1,24 +1,10 @@
-# sophia
+# 介绍
+sophia是一个开源课程项目，本仓库是网站前端。
 
-## Project setup
-```
-npm install
-```
+# 主要功能
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## 账户管理
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## 课程管理
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 选课系统

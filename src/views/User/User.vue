@@ -1,41 +1,42 @@
 <template>
-  <v-main class="grey lighten-3">
-    <v-container>
-      <v-row>
-        <v-col cols="2">
-          <v-sheet rounded="lg">
-            <v-list color="transparent">
-              <v-list-item v-for="n in 5" :key="n" link>
-                <v-list-item-content>
-                  <v-list-item-title> List Item {{ n }} </v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
+  <v-container>
+    <v-row>
+      <v-col cols="2">
+        <v-sheet rounded="lg">
+          <v-list color="transparent">
+            <v-list-item
+              v-for="(link, i) in links"
+              :key="i"
+              :href="prefixLink(link.name)"
+            >
+              <v-list-item-content>
+                <v-list-item-title> {{ link.title }} </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-sheet>
+      </v-col>
 
-              <v-divider class="my-2"></v-divider>
-
-              <v-list-item link color="grey lighten-4">
-                <v-list-item-content>
-                  <v-list-item-title> Refresh </v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
-          </v-sheet>
-        </v-col>
-
-        <v-col>
-          <v-sheet min-height="70vh" rounded="lg" color="red">
-            <!--  -->
-          </v-sheet>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-main>
+      <v-col>
+        <router-view></router-view>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
 export default {
   data: () => ({
-    links: ["Dashboard", "Messages", "Profile", "Updates"],
+    links: [
+      { name: "", title: "账户设置" },
+      { name: "assets", title: "我的资产" },
+    ],
   }),
+
+  computed: {
+    prefixLink() {
+      return (link) => `/userid/${link}`;
+    },
+  },
 };
 </script>
