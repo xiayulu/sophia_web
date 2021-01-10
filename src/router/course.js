@@ -1,7 +1,6 @@
 export default [
   {
-    path: "/course",
-    name: "Course",
+    path: "/course/:courseid/",
     component: () => import("@/views/Course/Course.vue"),
     children: [
       {
@@ -17,7 +16,7 @@ export default [
         component: () => import("@/views/Course/Discuss.vue"),
       },
       {
-        path: "discuss/id",
+        path: "discuss/:discussid",
         component: () => import("@/views/Course/Dialog.vue"),
       },
       {

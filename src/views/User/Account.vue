@@ -44,5 +44,13 @@ export default {
       { name: "邮箱", value: "18620411149@11.com", op: "验证邮箱" },
     ],
   }),
+  mounted() {
+    this.axios
+      .get("/api/repos/")
+      .then((res) => {
+        this.repos = res.data;
+      })
+      .catch((err) => console.log(err));
+  },
 };
 </script>

@@ -5,12 +5,12 @@
         <v-sheet min-height="70vh" rounded="lg">
           <v-list dense>
             <v-list-item-group v-model="selectedItem" color="primary">
-              <v-list-item v-for="(chapter, i) in chapters" :key="i">
+              <v-list-item v-for="(content, i) in contents" :key="i">
                 <v-list-item-icon>
                   <v-icon v-text="i"></v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
-                  <v-list-item-title v-text="chapter.text"></v-list-item-title>
+                  <v-list-item-title v-text="content.name"></v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
             </v-list-item-group>
@@ -26,11 +26,16 @@ export default {
   name: "ChapterList",
   data: () => ({
     selectedItem: 1,
-    chapters: [
-      { text: "随机变量", icon: "mdi-clock" },
-      { text: "规律分布", icon: "mdi-account" },
-      { text: "多维概率分布Conversions", icon: "mdi-flag" },
-    ],
+    contents: [],
   }),
+  mounted() {
+    let url = `/api/repos/${this.$route.params.courseid}/contents/`;
+    this.axios
+      .get(url)
+      .then((res) => {
+        this.contents = res.data;
+      })
+      .catch((err) => console.log(err));
+  },
 };
 </script>

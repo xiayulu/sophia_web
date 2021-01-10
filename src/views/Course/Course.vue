@@ -13,11 +13,11 @@
       </v-btn>
     </v-toolbar>
     <v-container>
-      <v-btn><router-link to="/course/">简介</router-link></v-btn>
-      <v-btn><router-link to="/course/contents">目录</router-link></v-btn>
-      <v-btn><router-link to="/course/discuss">讨论</router-link></v-btn>
-      <v-btn><router-link to="/course/exercise">练习</router-link></v-btn>
-      <v-btn><router-link to="/course/manage">管理</router-link></v-btn>
+      <v-btn><router-link :to="convertLink('')">简介</router-link></v-btn>
+      <v-btn><router-link :to="convertLink('contents')">目录</router-link></v-btn>
+      <v-btn><router-link :to="convertLink('discuss')">讨论</router-link></v-btn>
+      <v-btn><router-link :to="convertLink('exercise')">练习</router-link></v-btn>
+      <v-btn><router-link :to="convertLink('manage')">管理</router-link></v-btn>
     </v-container>
     <router-view></router-view>
   </v-card>
@@ -29,6 +29,11 @@ export default {
     return {
       tab: null, // tab control
     };
+  },
+  computed: {
+    convertLink() {
+      return (link) => `/course/${this.$route.params.courseid}/${link}`;
+    },
   },
 };
 </script>
