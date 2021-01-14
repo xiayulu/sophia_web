@@ -24,7 +24,7 @@ export default {
   computed: {
     computedReadmeURL() {
       let branch = branch || "master";
-      return `/api/repos/${this.$route.params.courseid}/raw/${branch}/README.md`;
+      return `/api/repos/${this.$route.params.courseid}/raw/${branch}/${this.$route.params.articleid}`;
     },
   },
 };

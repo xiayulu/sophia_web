@@ -12,6 +12,11 @@ export default [
         component: () => import("@/views/Course/Contents.vue"),
       },
       {
+        path: "article/:articleid",
+        component: () => import("@/views/Course/Article.vue"),
+      },
+
+      {
         path: "discuss",
         component: () => import("@/views/Course/Discuss.vue"),
       },

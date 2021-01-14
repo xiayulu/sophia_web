@@ -4,16 +4,18 @@
       <v-col cols="12" sm="10">
         <v-sheet min-height="70vh" rounded="lg">
           <v-list dense>
-            <v-list-item-group v-model="selectedItem" color="primary">
-              <v-list-item v-for="(content, i) in contents" :key="i">
-                <v-list-item-icon>
-                  <v-icon v-text="i"></v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                  <v-list-item-title v-text="content.name"></v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list-item-group>
+            <v-list-item
+              v-for="(content, i) in contents"
+              :key="i"
+              :href="prefixLink(content.path)"
+            >
+              <v-list-item-icon>
+                <v-icon v-text="i"></v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title v-text="content.name"></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
           </v-list>
         </v-sheet>
       </v-col>
@@ -28,12 +30,20 @@ export default {
     selectedItem: 1,
     contents: [],
   }),
+  computed: {
+    prefixLink() {
+      return (link) => `/course/${this.$route.params.courseid}/article/${link}`;
+    },
+  },
   mounted() {
     let url = `/api/repos/${this.$route.params.courseid}/contents/`;
     this.axios
       .get(url)
       .then((res) => {
-        this.contents = res.data;
+        const mdReg = /(\.md$)/;
+        this.contents = res.data.filter(
+          (item) => mdReg.test(item.path) && item.type === "file"
+        );
       })
       .catch((err) => console.log(err));
   },
